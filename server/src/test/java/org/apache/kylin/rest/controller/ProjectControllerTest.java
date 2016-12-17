@@ -72,16 +72,16 @@ public class ProjectControllerTest extends ServiceTestBase {
         ProjectInstance ret = projectController.saveProject(getProjectRequest(project, null));
 
         Assert.assertEquals(ret.getOwner(), "ADMIN");
-        Assert.assertEquals(ProjectManager.getInstance(getTestConfig()).listAllProjects().size(), originalProjectCount + 1);
+        Assert.assertEquals(ProjectManager.getInstance(getKylinConfig()).listAllProjects().size(), originalProjectCount + 1);
 
         //test update project
         ProjectInstance newProject = new ProjectInstance();
         newProject.setName("new_project_2");
         projectController.updateProject(getProjectRequest(newProject, "new_project"));
 
-        Assert.assertEquals(ProjectManager.getInstance(getTestConfig()).listAllProjects().size(), originalProjectCount + 1);
-        Assert.assertEquals(ProjectManager.getInstance(getTestConfig()).getProject("new_project"), null);
-        Assert.assertNotEquals(ProjectManager.getInstance(getTestConfig()).getProject("new_project_2"), null);
+        Assert.assertEquals(ProjectManager.getInstance(getKylinConfig()).listAllProjects().size(), originalProjectCount + 1);
+        Assert.assertEquals(ProjectManager.getInstance(getKylinConfig()).getProject("new_project"), null);
+        Assert.assertNotEquals(ProjectManager.getInstance(getKylinConfig()).getProject("new_project_2"), null);
 
         //test update project description only
         ProjectInstance newProject2 = new ProjectInstance();
@@ -89,10 +89,10 @@ public class ProjectControllerTest extends ServiceTestBase {
         newProject2.setDescription("hello world");
         projectController.updateProject(getProjectRequest(newProject2, "new_project_2"));
 
-        Assert.assertEquals(ProjectManager.getInstance(getTestConfig()).listAllProjects().size(), originalProjectCount + 1);
-        Assert.assertEquals(ProjectManager.getInstance(getTestConfig()).getProject("new_project"), null);
-        Assert.assertNotEquals(ProjectManager.getInstance(getTestConfig()).getProject("new_project_2"), null);
-        Assert.assertEquals(ProjectManager.getInstance(getTestConfig()).getProject("new_project_2").getDescription(), "hello world");
+        Assert.assertEquals(ProjectManager.getInstance(getKylinConfig()).listAllProjects().size(), originalProjectCount + 1);
+        Assert.assertEquals(ProjectManager.getInstance(getKylinConfig()).getProject("new_project"), null);
+        Assert.assertNotEquals(ProjectManager.getInstance(getKylinConfig()).getProject("new_project_2"), null);
+        Assert.assertEquals(ProjectManager.getInstance(getKylinConfig()).getProject("new_project_2").getDescription(), "hello world");
     }
 
     @Test(expected = InternalErrorException.class)

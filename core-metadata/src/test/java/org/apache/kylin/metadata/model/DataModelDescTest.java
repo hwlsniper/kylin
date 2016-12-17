@@ -42,7 +42,7 @@ public class DataModelDescTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testGetCopyOf() throws JsonProcessingException {
-        DataModelDesc desc = MetadataManager.getInstance(getTestConfig()).getDataModelDesc("test_kylin_inner_join_model_desc");
+        DataModelDesc desc = MetadataManager.getInstance(getKylinConfig()).getDataModelDesc("test_kylin_inner_join_model_desc");
         DataModelDesc copyDesc = DataModelDesc.getCopyOf(desc);
 
         // uuid is different, set to equals for json comparison
@@ -57,7 +57,7 @@ public class DataModelDescTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testPartitionDescCopyOf() throws JsonProcessingException {
-        PartitionDesc desc = MetadataManager.getInstance(getTestConfig()).getDataModelDesc("test_kylin_inner_join_model_desc").partitionDesc;
+        PartitionDesc desc = MetadataManager.getInstance(getKylinConfig()).getDataModelDesc("test_kylin_inner_join_model_desc").partitionDesc;
         PartitionDesc copyDesc = PartitionDesc.getCopyOf(desc);
 
         String descStr = JsonUtil.writeValueAsIndentString(desc);

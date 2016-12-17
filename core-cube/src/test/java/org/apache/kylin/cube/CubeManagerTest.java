@@ -59,7 +59,7 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
     @Test
     public void testBasics() throws Exception {
 
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("test_kylin_cube_without_slr_ready");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("test_kylin_cube_without_slr_ready");
         CubeDesc desc = cube.getDescriptor();
         System.out.println(JsonUtil.writeValueAsIndentString(desc));
 
@@ -71,7 +71,7 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
     @Test
     public void testCreateAndDrop() throws Exception {
 
-        KylinConfig config = getTestConfig();
+        KylinConfig config = getKylinConfig();
         CubeManager cubeMgr = CubeManager.getInstance(config);
         ProjectManager prjMgr = ProjectManager.getInstance(config);
         ResourceStore store = getStore();
@@ -86,17 +86,17 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
 
         assertTrue(prjMgr.listAllRealizations(ProjectInstance.DEFAULT_PROJECT_NAME).contains(createdCube));
 
-        CubeInstance droppedCube = CubeManager.getInstance(getTestConfig()).dropCube("a_whole_new_cube", false);
+        CubeInstance droppedCube = CubeManager.getInstance(getKylinConfig()).dropCube("a_whole_new_cube", false);
         assertTrue(createdCube == droppedCube);
 
         assertTrue(!prjMgr.listAllRealizations(ProjectInstance.DEFAULT_PROJECT_NAME).contains(droppedCube));
 
-        assertNull(CubeManager.getInstance(getTestConfig()).getCube("a_whole_new_cube"));
+        assertNull(CubeManager.getInstance(getKylinConfig()).getCube("a_whole_new_cube"));
     }
 
     @Test
     public void testAutoMergeNormal() throws Exception {
-        CubeManager mgr = CubeManager.getInstance(getTestConfig());
+        CubeManager mgr = CubeManager.getInstance(getKylinConfig());
         CubeInstance cube = mgr.getCube("test_kylin_cube_with_slr_empty");
 
         cube.getDescriptor().setAutoMergeTimeRanges(new long[] { 2000, 6000 });
@@ -129,9 +129,9 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testConcurrentBuildAndMerge() throws Exception {
-        CubeManager mgr = CubeManager.getInstance(getTestConfig());
+        CubeManager mgr = CubeManager.getInstance(getKylinConfig());
         CubeInstance cube = mgr.getCube("test_kylin_cube_with_slr_empty");
-        getTestConfig().setMaxBuildingSegments(10);
+        getKylinTestConfig().setMaxBuildingSegments(10);
         // no segment at first
         assertEquals(0, cube.getSegments().size());
 
@@ -186,8 +186,8 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testConcurrentMergeAndMerge() throws Exception {
-        CubeManager mgr = CubeManager.getInstance(getTestConfig());
-        getTestConfig().setMaxBuildingSegments(10);
+        CubeManager mgr = CubeManager.getInstance(getKylinConfig());
+        getKylinTestConfig().setMaxBuildingSegments(10);
         CubeInstance cube = mgr.getCube("test_kylin_cube_with_slr_empty");
 
         // no segment at first
@@ -245,7 +245,7 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testGetAllCubes() throws Exception {
-        final ResourceStore store = ResourceStore.getStore(getTestConfig());
+        final ResourceStore store = ResourceStore.getStore(getKylinConfig());
         final NavigableSet<String> cubePath = store.listResources(ResourceStore.CUBE_RESOURCE_ROOT);
         assertTrue(cubePath.size() > 1);
 
@@ -255,7 +255,7 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testAutoMergeWithGap() throws Exception {
-        CubeManager mgr = CubeManager.getInstance(getTestConfig());
+        CubeManager mgr = CubeManager.getInstance(getKylinConfig());
         CubeInstance cube = mgr.getCube("test_kylin_cube_with_slr_empty");
 
         cube.getDescriptor().setAutoMergeTimeRanges(new long[] { 2000, 6000 });
@@ -305,6 +305,6 @@ public class CubeManagerTest extends LocalFileMetadataTestCase {
     }
 
     public CubeDescManager getCubeDescManager() {
-        return CubeDescManager.getInstance(getTestConfig());
+        return CubeDescManager.getInstance(getKylinConfig());
     }
 }

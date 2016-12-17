@@ -87,7 +87,7 @@ public class MergeCuboidMapperTest extends LocalFileMetadataTestCase {
 
         createTestMetadata();
 
-        logger.info("The metadataUrl is : " + getTestConfig());
+        logger.info("The metadataUrl is : " + getKylinConfig());
 
         MetadataManager.clearCache();
         CubeManager.clearCache();
@@ -102,9 +102,9 @@ public class MergeCuboidMapperTest extends LocalFileMetadataTestCase {
         MergeCuboidMapper mapper = new MergeCuboidMapper();
         mapDriver = MapDriver.newMapDriver(mapper);
 
-        cubeManager = CubeManager.getInstance(getTestConfig());
+        cubeManager = CubeManager.getInstance(getKylinConfig());
         cube = cubeManager.getCube("test_kylin_cube_without_slr_left_join_ready_2_segments");
-        dictionaryManager = DictionaryManager.getInstance(getTestConfig());
+        dictionaryManager = DictionaryManager.getInstance(getKylinConfig());
         lfn = cube.getDescriptor().findColumnRef("DEFAULT.TEST_KYLIN_FACT", "LSTG_FORMAT_NAME");
         lsi = cube.getDescriptor().findColumnRef("DEFAULT.TEST_KYLIN_FACT", "CAL_DT");
         ssc = cube.getDescriptor().findColumnRef("DEFAULT.TEST_CATEGORY_GROUPINGS", "META_CATEG_NAME");
@@ -167,7 +167,7 @@ public class MergeCuboidMapperTest extends LocalFileMetadataTestCase {
 
         // hack for distributed cache
         //        File metaDir = new File("../job/meta");
-        //        FileUtils.copyDirectory(new File(getTestConfig().getMetadataUrl()), metaDir);
+        //        FileUtils.copyDirectory(new File(getKylinConfig().getMetadataUrl()), metaDir);
         //
         //        mapDriver.getConfiguration().set(BatchConstants.CFG_CUBE_NAME, cubeName);
         //        mapDriver.getConfiguration().set(BatchConstants.CFG_CUBE_SEGMENT_NAME, segmentName);

@@ -55,7 +55,7 @@ public class MeasureTypeOnlyAggrInBaseTest extends LocalFileMetadataTestCase {
     private List<FunctionDesc> metrics;
 
     public CubeManager getCubeManager() {
-        return CubeManager.getInstance(getTestConfig());
+        return CubeManager.getInstance(getKylinConfig());
     }
 
     private CubeInstance getTestKylinCubeWithSeller() {

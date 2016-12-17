@@ -44,7 +44,7 @@ public class CubeManagerCacheTest extends LocalFileMetadataTestCase {
         MetadataManager.clearCache();
         CubeManager.clearCache();
         ProjectManager.clearCache();
-        cubeManager = CubeManager.getInstance(getTestConfig());
+        cubeManager = CubeManager.getInstance(getKylinConfig());
     }
 
     @After
@@ -73,6 +73,6 @@ public class CubeManagerCacheTest extends LocalFileMetadataTestCase {
     }
 
     public CubeDescManager getCubeDescManager() {
-        return CubeDescManager.getInstance(getTestConfig());
+        return CubeDescManager.getInstance(getKylinConfig());
     }
 }

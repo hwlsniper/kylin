@@ -71,7 +71,7 @@ public class KylinConfig extends KylinConfigBase {
 
     //Only used in test cases!!! 
     public static void destroyInstance() {
-        logger.info("Destory KylinConfig");
+        logger.info("Destroy KylinConfig");
         dumpStackTrace();
         ENV_INSTANCE = null;
     }

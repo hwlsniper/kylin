@@ -40,7 +40,7 @@ public class KylinConfigExt extends KylinConfig {
 
     private KylinConfigExt(KylinConfig base, Map<String, String> overrides) {
         super(base.getAllProperties(), true);
-        if (base.getClass() != KylinConfig.class) {
+        if (base.getClass() != KylinConfig.class && base.getClass().getSuperclass() != KylinConfig.class) {
             throw new IllegalArgumentException();
         }
         this.base = base;

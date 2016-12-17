@@ -38,7 +38,7 @@ public class CuboidTest extends LocalFileMetadataTestCase {
     }
 
     public CubeDescManager getCubeDescManager() {
-        return CubeDescManager.getInstance(getTestConfig());
+        return CubeDescManager.getInstance(getKylinConfig());
     }
 
     private CubeDesc getTestKylinCubeWithoutSeller() {

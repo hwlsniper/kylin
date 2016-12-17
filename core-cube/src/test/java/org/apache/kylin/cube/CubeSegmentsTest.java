@@ -188,6 +188,6 @@ public class CubeSegmentsTest extends LocalFileMetadataTestCase {
     }
 
     private CubeManager mgr() {
-        return CubeManager.getInstance(getTestConfig());
+        return CubeManager.getInstance(getKylinConfig());
     }
 }

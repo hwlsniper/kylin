@@ -44,7 +44,7 @@ public class RowKeySplitterTest extends LocalFileMetadataTestCase {
     @Test
     public void testWithSlr() throws Exception {
         //has shard
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
 
         RowKeySplitter rowKeySplitter = new RowKeySplitter(cube.getFirstSegment(), 11, 20);
         // base cuboid rowkey
@@ -57,7 +57,7 @@ public class RowKeySplitterTest extends LocalFileMetadataTestCase {
     @Test
     public void testWithoutSlr() throws Exception {
         //no shard
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
 
         RowKeySplitter rowKeySplitter = new RowKeySplitter(cube.getFirstSegment(), 11, 20);
         // base cuboid rowkey

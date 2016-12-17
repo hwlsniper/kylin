@@ -49,34 +49,34 @@ public class MetadataManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testListAllTables() throws Exception {
-        List<TableDesc> tables = getInstance(getTestConfig()).listAllTables();
+        List<TableDesc> tables = getInstance(getKylinConfig()).listAllTables();
         Assert.assertNotNull(tables);
         Assert.assertTrue(tables.size() > 0);
     }
 
     @Test
     public void testFindTableByName() throws Exception {
-        TableDesc table = getInstance(getTestConfig()).getTableDesc("EDW.TEST_CAL_DT");
+        TableDesc table = getInstance(getKylinConfig()).getTableDesc("EDW.TEST_CAL_DT");
         Assert.assertNotNull(table);
         Assert.assertEquals("EDW.TEST_CAL_DT", table.getIdentity());
     }
 
     @Test
     public void testGetInstance() throws Exception {
-        Assert.assertNotNull(getInstance(getTestConfig()));
-        Assert.assertNotNull(getInstance(getTestConfig()).listAllTables());
-        Assert.assertTrue(getInstance(getTestConfig()).listAllTables().size() > 0);
+        Assert.assertNotNull(getInstance(getKylinConfig()));
+        Assert.assertNotNull(getInstance(getKylinConfig()).listAllTables());
+        Assert.assertTrue(getInstance(getKylinConfig()).listAllTables().size() > 0);
     }
 
     @Test
     public void testDataModel() throws Exception {
-        DataModelDesc modelDesc = getInstance(getTestConfig()).getDataModelDesc("test_kylin_left_join_model_desc");
+        DataModelDesc modelDesc = getInstance(getKylinConfig()).getDataModelDesc("test_kylin_left_join_model_desc");
         Assert.assertTrue(modelDesc.getDimensions().size() > 0);
     }
 
     @Test
     public void testSnowflakeDataModel() throws Exception {
-        DataModelDesc model = getInstance(getTestConfig()).getDataModelDesc("test_kylin_snowflake_sales_model");
+        DataModelDesc model = getInstance(getKylinConfig()).getDataModelDesc("test_kylin_snowflake_sales_model");
         Assert.assertTrue(model.getDimensions().size() > 0);
 
         try {
@@ -94,7 +94,7 @@ public class MetadataManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testTableSample() throws IOException {
-        TableExtDesc tableExtDesc = getInstance(getTestConfig()).getTableExt("TEST.TEST_TABLE");
+        TableExtDesc tableExtDesc = getInstance(getKylinConfig()).getTableExt("TEST.TEST_TABLE");
         Assert.assertNotNull(tableExtDesc);
 
         List<TableExtDesc.ColumnStats> columnStatsList = new ArrayList<>();
@@ -102,14 +102,14 @@ public class MetadataManagerTest extends LocalFileMetadataTestCase {
         columnStats.setColumnSamples("Max", "Min", "dfadsfdsfdsafds", "d");
         columnStatsList.add(columnStats);
         tableExtDesc.setColumnStats(columnStatsList);
-        getInstance(getTestConfig()).saveTableExt(tableExtDesc);
+        getInstance(getKylinConfig()).saveTableExt(tableExtDesc);
 
-        TableExtDesc tableExtDesc1 = getInstance(getTestConfig()).getTableExt("TEST.TEST_TABLE");
+        TableExtDesc tableExtDesc1 = getInstance(getKylinConfig()).getTableExt("TEST.TEST_TABLE");
         Assert.assertNotNull(tableExtDesc1);
 
         List<TableExtDesc.ColumnStats> columnStatsList1 = tableExtDesc1.getColumnStats();
         Assert.assertEquals(1, columnStatsList1.size());
 
-        getInstance(getTestConfig()).removeTableExt("TEST.TEST_TABLE");
+        getInstance(getKylinConfig()).removeTableExt("TEST.TEST_TABLE");
     }
 }

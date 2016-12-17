@@ -44,7 +44,7 @@ public class ITSnapshotManagerTest extends HBaseMetadataTestCase {
     @Before
     public void setup() throws Exception {
         createTestMetadata();
-        snapshotMgr = SnapshotManager.getInstance(getTestConfig());
+        snapshotMgr = SnapshotManager.getInstance(getKylinConfig());
     }
 
     @After
@@ -55,7 +55,7 @@ public class ITSnapshotManagerTest extends HBaseMetadataTestCase {
     @Test
     public void basicTest() throws Exception {
         String tableName = "EDW.TEST_SITES";
-        TableDesc tableDesc = MetadataManager.getInstance(getTestConfig()).getTableDesc(tableName);
+        TableDesc tableDesc = MetadataManager.getInstance(getKylinConfig()).getTableDesc(tableName);
         ReadableTable hiveTable = SourceFactory.createReadableTable(tableDesc);
         String snapshotPath = snapshotMgr.buildSnapshot(hiveTable, tableDesc).getResourcePath();
 

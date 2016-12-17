@@ -23,6 +23,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.kylin.common.KylinConfig;
+import org.apache.kylin.common.KylinTestConfig;
 import org.apache.kylin.common.persistence.ResourceStore;
 
 public class LocalFileMetadataTestCase extends AbstractKylinTestCase {
@@ -44,7 +45,7 @@ public class LocalFileMetadataTestCase extends AbstractKylinTestCase {
     }
 
     public static void staticCreateTestMetadata(String testDataFolder) {
-        KylinConfig.destroyInstance();
+        KylinTestConfig.destroyInstance();
 
         String tempTestMetadataUrl = LOCALMETA_TEMP_DATA;
         try {
@@ -58,6 +59,7 @@ public class LocalFileMetadataTestCase extends AbstractKylinTestCase {
             System.setProperty(KylinConfig.KYLIN_CONF, tempTestMetadataUrl);
 
         KylinConfig.getInstanceFromEnv().setMetadataUrl(tempTestMetadataUrl);
+        KylinTestConfig.getInstanceFromEnv().setMetadataUrl(tempTestMetadataUrl);
     }
 
     public static void cleanAfterClass() {

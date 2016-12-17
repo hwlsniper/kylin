@@ -78,7 +78,7 @@ public class MergeCuboidJobTest extends LocalFileMetadataTestCase {
         FileUtil.fullyDelete(new File(output));
 
         // CubeManager cubeManager =
-        // CubeManager.getInstanceFromEnv(getTestConfig());
+        // CubeManager.getInstanceFromEnv(getKylinConfig());
 
         String[] args = { "-input", baseFolder.getAbsolutePath() + "," + eightFoler.getAbsolutePath(), "-cubename", cubeName, "-segmentname", "20130331080000_20131212080000", "-output", output, "-jobname", jobname };
         assertEquals("Job failed", 0, ToolRunner.run(conf, new MergeCuboidJob(), args));

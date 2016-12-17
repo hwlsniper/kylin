@@ -56,19 +56,19 @@ public class ProjectManagerTest extends LocalFileMetadataTestCase {
 
     @Test(expected = IllegalStateException.class)
     public void testDropNonemptyProject() throws IOException {
-        ProjectManager.getInstance(getTestConfig()).dropProject("DEFAULT");
+        ProjectManager.getInstance(getKylinConfig()).dropProject("DEFAULT");
     }
 
     @Test(expected = IllegalStateException.class)
     public void testDropNonexistProject() throws IOException {
-        ProjectManager.getInstance(getTestConfig()).dropProject("DEFAULT???");
+        ProjectManager.getInstance(getKylinConfig()).dropProject("DEFAULT???");
     }
 
     @Test
     public void testNewProject() throws Exception {
-        ProjectManager prjMgr = ProjectManager.getInstance(getTestConfig());
-        CubeManager cubeMgr = CubeManager.getInstance(getTestConfig());
-        CubeDescManager cubeDescMgr = CubeDescManager.getInstance(getTestConfig());
+        ProjectManager prjMgr = ProjectManager.getInstance(getKylinConfig());
+        CubeManager cubeMgr = CubeManager.getInstance(getKylinConfig());
+        CubeDescManager cubeDescMgr = CubeDescManager.getInstance(getKylinConfig());
 
         int originalProjectCount = prjMgr.listAllProjects().size();
         int originalCubeCount = cubeMgr.listAllCubes().size();
@@ -81,7 +81,7 @@ public class ProjectManagerTest extends LocalFileMetadataTestCase {
         CubeDesc desc = cubeDescMgr.getCubeDesc("test_kylin_cube_with_slr_desc");
         CubeInstance createdCube = cubeMgr.createCube("cube_in_alien_project", "alien", desc, null);
         assertTrue(createdCube == cubeMgr.getCube("cube_in_alien_project"));
-        ProjectManager proMgr = ProjectManager.getInstance(getTestConfig());
+        ProjectManager proMgr = ProjectManager.getInstance(getKylinConfig());
         Set<IRealization> realizations = proMgr.listAllRealizations("alien");
         assertTrue(realizations.contains(createdCube));
 
@@ -94,12 +94,12 @@ public class ProjectManagerTest extends LocalFileMetadataTestCase {
         prjMgr.moveRealizationToProject(RealizationType.CUBE, "cube_in_alien_project", "default", null);
         assertTrue(prjMgr.listAllRealizations("ALIEN").size() == 0);
         assertTrue(prjMgr.listAllRealizations("default").size() == originalCubeCountInDefault + 1);
-        assertTrue(ProjectManager.getInstance(getTestConfig()).listAllRealizations("default").contains(createdCube));
+        assertTrue(ProjectManager.getInstance(getKylinConfig()).listAllRealizations("default").contains(createdCube));
 
         prjMgr.moveRealizationToProject(RealizationType.CUBE, "cube_in_alien_project", "alien", null);
         assertTrue(prjMgr.listAllRealizations("ALIEN").size() == 1);
         assertTrue(prjMgr.listAllRealizations("default").size() == originalCubeCountInDefault);
-        assertTrue(ProjectManager.getInstance(getTestConfig()).listAllRealizations("alien").contains(createdCube));
+        assertTrue(ProjectManager.getInstance(getKylinConfig()).listAllRealizations("alien").contains(createdCube));
 
         CubeInstance droppedCube = cubeMgr.dropCube("cube_in_alien_project", true);
 
@@ -114,9 +114,9 @@ public class ProjectManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testExistingProject() throws Exception {
-        ProjectManager prjMgr = ProjectManager.getInstance(getTestConfig());
-        CubeManager cubeMgr = CubeManager.getInstance(getTestConfig());
-        CubeDescManager cubeDescMgr = CubeDescManager.getInstance(getTestConfig());
+        ProjectManager prjMgr = ProjectManager.getInstance(getKylinConfig());
+        CubeManager cubeMgr = CubeManager.getInstance(getKylinConfig());
+        CubeDescManager cubeDescMgr = CubeDescManager.getInstance(getKylinConfig());
 
         int originalProjectCount = prjMgr.listAllProjects().size();
         int originalCubeCount = cubeMgr.listAllCubes().size();
@@ -144,8 +144,8 @@ public class ProjectManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testProjectsDrop() throws IOException {
-        ProjectManager prjMgr = ProjectManager.getInstance(getTestConfig());
-        CubeManager cubeMgr = CubeManager.getInstance(getTestConfig());
+        ProjectManager prjMgr = ProjectManager.getInstance(getKylinConfig());
+        CubeManager cubeMgr = CubeManager.getInstance(getKylinConfig());
 
         CubeInstance cube = cubeMgr.getCube("test_kylin_cube_with_slr_empty");
         assertTrue(prjMgr.getRealizationsByTable("default", "default.test_kylin_fact").contains(cube));
@@ -159,8 +159,8 @@ public class ProjectManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testProjectsLoadAfterProjectChange() throws IOException {
-        ProjectManager prjMgr = ProjectManager.getInstance(getTestConfig());
-        CubeManager cubeMgr = CubeManager.getInstance(getTestConfig());
+        ProjectManager prjMgr = ProjectManager.getInstance(getKylinConfig());
+        CubeManager cubeMgr = CubeManager.getInstance(getKylinConfig());
 
         CubeInstance cube = cubeMgr.getCube("test_kylin_cube_with_slr_empty");
         assertTrue(prjMgr.getRealizationsByTable("default", "default.test_kylin_fact").contains(cube));

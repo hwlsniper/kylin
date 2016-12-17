@@ -50,7 +50,7 @@ public class RowKeyDecoderTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testDecodeWithoutSlr() throws Exception {
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
 
         RowKeyDecoder rowKeyDecoder = new RowKeyDecoder(cube.getFirstSegment());
 
@@ -64,7 +64,7 @@ public class RowKeyDecoderTest extends LocalFileMetadataTestCase {
     @Ignore
     @Test
     public void testDecodeWithSlr() throws Exception {
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
 
         RowKeyDecoder rowKeyDecoder = new RowKeyDecoder(cube.getFirstSegment());
 
@@ -77,7 +77,7 @@ public class RowKeyDecoderTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testEncodeAndDecodeWithUtf8() throws IOException {
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
         CubeDesc cubeDesc = cube.getDescriptor();
 
         String[] data = new String[8];

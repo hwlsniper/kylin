@@ -70,7 +70,7 @@ public class JobControllerTest extends ServiceTestBase {
         cubeController.setJobService(jobService);
         cubeController.setCubeService(cubeService);
 
-        KylinConfig testConfig = getTestConfig();
+        KylinConfig testConfig = getKylinConfig();
         cubeManager = CubeManager.getInstance(testConfig);
         cubeDescManager = CubeDescManager.getInstance(testConfig);
         executableDAO = ExecutableDao.getInstance(testConfig);

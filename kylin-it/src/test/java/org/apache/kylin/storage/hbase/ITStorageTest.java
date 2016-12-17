@@ -69,7 +69,7 @@ public class ITStorageTest extends HBaseMetadataTestCase {
     public void setUp() throws Exception {
         this.createTestMetadata();
 
-        CubeManager cubeMgr = CubeManager.getInstance(getTestConfig());
+        CubeManager cubeMgr = CubeManager.getInstance(getKylinConfig());
         cube = cubeMgr.getCube("test_kylin_cube_without_slr_left_join_empty");
         Assert.assertNotNull(cube);
         storageEngine = StorageFactory.createQuery(cube);

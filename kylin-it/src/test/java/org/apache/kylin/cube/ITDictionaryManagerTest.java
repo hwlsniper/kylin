@@ -59,8 +59,8 @@ public class ITDictionaryManagerTest extends LocalFileMetadataTestCase {
 
     @Test
     public void basic() throws Exception {
-        dictMgr = DictionaryManager.getInstance(getTestConfig());
-        CubeDesc cubeDesc = CubeDescManager.getInstance(getTestConfig()).getCubeDesc("test_kylin_cube_without_slr_desc");
+        dictMgr = DictionaryManager.getInstance(getKylinConfig());
+        CubeDesc cubeDesc = CubeDescManager.getInstance(getKylinConfig()).getCubeDesc("test_kylin_cube_without_slr_desc");
         TblColRef col = cubeDesc.findColumnRef("DEFAULT.TEST_KYLIN_FACT", "LSTG_FORMAT_NAME");
 
         MockDistinctColumnValuesProvider mockupData = new MockDistinctColumnValuesProvider("A", "B", "C");

@@ -50,7 +50,7 @@ public class RowKeyEncoderTest extends LocalFileMetadataTestCase {
 
     @Test
     public void testEncodeWithoutSlr() throws Exception {
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITHOUT_SLR_READY");
         // CubeSegment seg = cube.getTheOnlySegment();
         CubeDesc cubeDesc = cube.getDescriptor();
         // String data =
@@ -80,7 +80,7 @@ public class RowKeyEncoderTest extends LocalFileMetadataTestCase {
     @Ignore
     @Test
     public void testEncodeWithSlr() throws Exception {
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
         // CubeSegment seg = cube.getTheOnlySegment();
         CubeDesc cubeDesc = cube.getDescriptor();
         // String data =
@@ -116,7 +116,7 @@ public class RowKeyEncoderTest extends LocalFileMetadataTestCase {
     @Ignore
     @Test
     public void testEncodeWithSlr2() throws Exception {
-        CubeInstance cube = CubeManager.getInstance(getTestConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
+        CubeInstance cube = CubeManager.getInstance(getKylinConfig()).getCube("TEST_KYLIN_CUBE_WITH_SLR_READY");
         // CubeSegment seg = cube.getTheOnlySegment();
         CubeDesc cubeDesc = cube.getDescriptor();
         // String data =

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.kylin.common.KylinConfig;
+import org.apache.kylin.common.KylinTestConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -45,7 +46,7 @@ public class MailServiceTest extends LocalFileMetadataTestCase {
     @Test
     public void testSendEmail() throws IOException {
 
-        KylinConfig config = KylinConfig.getInstanceFromEnv();
+        KylinTestConfig config = KylinTestConfig.getInstanceFromEnv();
 
         MailService mailservice = new MailService(config);
         boolean sent = sendTestEmail(mailservice);

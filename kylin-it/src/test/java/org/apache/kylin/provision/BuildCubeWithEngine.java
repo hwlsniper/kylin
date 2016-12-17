@@ -38,6 +38,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.kylin.common.KylinConfig;
+import org.apache.kylin.common.KylinTestConfig;
 import org.apache.kylin.common.util.ClassUtil;
 import org.apache.kylin.common.util.HBaseMetadataTestCase;
 import org.apache.kylin.common.util.Pair;
@@ -162,11 +163,11 @@ public class BuildCubeWithEngine {
 
     public void build() throws Exception {
         DeployUtil.prepareTestDataForNormalCubes("test_kylin_cube_with_slr_empty");
-        KylinConfig.getInstanceFromEnv().setHBaseHFileSizeGB(1.0f);
+        KylinTestConfig.getInstanceFromEnv().setHBaseHFileSizeGB(1.0f);
         testInner();
         testLeft();
         testViewAsLookup();
-        KylinConfig.getInstanceFromEnv().setHBaseHFileSizeGB(0.0f);
+        KylinTestConfig.getInstanceFromEnv().setHBaseHFileSizeGB(0.0f);
     }
 
     protected ExecutableState waitForJob(String jobId) {

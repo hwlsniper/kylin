@@ -61,7 +61,7 @@ public class CubeReducerTest extends LocalFileMetadataTestCase {
 
         // hack for distributed cache
         FileUtils.deleteDirectory(new File("../job/meta"));
-        FileUtils.copyDirectory(new File(getTestConfig().getMetadataUrl()), new File("../job/meta"));
+        FileUtils.copyDirectory(new File(getKylinConfig().getMetadataUrl()), new File("../job/meta"));
 
         CuboidReducer reducer = new CuboidReducer();
         reduceDriver = ReduceDriver.newReduceDriver(reducer);
@@ -78,7 +78,7 @@ public class CubeReducerTest extends LocalFileMetadataTestCase {
 
         reduceDriver.getConfiguration().set(BatchConstants.CFG_CUBE_NAME, "test_kylin_cube_with_slr_ready");
 
-        CubeDesc cubeDesc = CubeManager.getInstance(getTestConfig()).getCube("test_kylin_cube_with_slr_ready").getDescriptor();
+        CubeDesc cubeDesc = CubeManager.getInstance(getKylinConfig()).getCube("test_kylin_cube_with_slr_ready").getDescriptor();
         BufferedMeasureCodec codec = new BufferedMeasureCodec(cubeDesc.getMeasures());
 
         Text key1 = new Text("72010ustech");
@@ -118,7 +118,7 @@ public class CubeReducerTest extends LocalFileMetadataTestCase {
         reduceDriver.getConfiguration().set(BatchConstants.CFG_CUBE_NAME, "test_kylin_cube_with_slr_ready");
         reduceDriver.getConfiguration().setInt(BatchConstants.CFG_CUBE_CUBOID_LEVEL, 1);
 
-        CubeDesc cubeDesc = CubeManager.getInstance(getTestConfig()).getCube("test_kylin_cube_with_slr_ready").getDescriptor();
+        CubeDesc cubeDesc = CubeManager.getInstance(getKylinConfig()).getCube("test_kylin_cube_with_slr_ready").getDescriptor();
         MeasureDesc measureDesc = cubeDesc.getMeasures().get(0);
         FunctionDesc functionDesc = measureDesc.getFunction();
         Field field = FunctionDesc.class.getDeclaredField("measureType");
