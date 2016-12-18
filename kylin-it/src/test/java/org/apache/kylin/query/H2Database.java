@@ -99,7 +99,7 @@ public class H2Database {
     }
 
     private String path(TableDesc tableDesc) {
-        if ("EDW.TEST_SELLER_TYPE_DIM".equals(tableDesc)) // it is a view of table below
+        if ("EDW.TEST_SELLER_TYPE_DIM".equals(tableDesc.getIdentity())) // it is a view of table below
             return "/data/" + "EDW.TEST_SELLER_TYPE_DIM_TABLE" + ".csv";
         else
             return "/data/" + tableDesc.getIdentity() + ".csv";
