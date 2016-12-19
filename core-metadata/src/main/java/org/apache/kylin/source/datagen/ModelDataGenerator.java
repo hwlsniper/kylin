@@ -249,7 +249,7 @@ public class ModelDataGenerator {
         return null;
     }
 
-    private List<String> getPkValues(ColumnDesc pk) throws IOException {
+    public List<String> getPkValues(ColumnDesc pk) throws IOException {
         if (existsInStore(pk.getTable()) == false)
             return null;
 

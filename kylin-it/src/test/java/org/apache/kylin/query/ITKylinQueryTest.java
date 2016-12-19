@@ -47,7 +47,7 @@ import org.junit.rules.ExpectedException;
 
 import com.google.common.collect.Maps;
 
-@Ignore("KylinQueryTest is contained by ITCombinationTest")
+//@Ignore("KylinQueryTest is contained by ITCombinationTest")
 public class ITKylinQueryTest extends KylinTestBase {
 
     @Rule
@@ -62,7 +62,7 @@ public class ITKylinQueryTest extends KylinTestBase {
         priorities.put(RealizationType.INVERTED_INDEX, 0);
         Candidate.setPriorities(priorities);
 
-        joinType = "left";
+        joinType = "inner";
 
         setupAll();
 
