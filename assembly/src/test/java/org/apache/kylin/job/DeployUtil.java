@@ -276,12 +276,12 @@ public class DeployUtil {
 
     private static String[] generateCreateViewHql(String viewName, String tableName) {
 
-        String dropsql = "DROP VIEW IF EXISTS " + viewName + ";";
-        StringBuilder ddl = new StringBuilder();
+        String dropView = "DROP VIEW IF EXISTS " + viewName + ";\n";
+        String dropTable = "DROP TABLE IF EXISTS " + viewName + ";\n";
 
-        ddl.append("CREATE VIEW " + viewName + " AS SELECT * FROM " + tableName + ";\n");
+        String createSql = ("CREATE VIEW " + viewName + " AS SELECT * FROM " + tableName + ";\n");
 
-        return new String[] { dropsql, ddl.toString() };
+        return new String[] { dropView, dropTable, createSql };
     }
 
     private static String getHiveDataType(String javaDataType) {
